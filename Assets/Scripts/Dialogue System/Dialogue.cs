@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Dialogue {
 
-	public string name;
+[CreateAssetMenu(fileName = "Question", menuName = "Mission/Question", order = 0)]
+public class Dialogue : ScriptableObject
+{
 
-	[TextArea(3, 10)]
-	public string[] sentences;
+    public List<mission> questions = new List<mission>();
+
+    [System.Serializable]
+    public struct mission
+    {
+        public string titleOfTheQuestion;
+        public Sprite theMissionImage;
+        public string answer;
+
+    }
 
 }

@@ -14,7 +14,7 @@ namespace Core.Manager
             Playing, Mainmenu, Question
         }
         [SerializeField]
-        private QuestionManager QuestionCanvas;
+        private DialogueManager QuestionCanvas;
         private PlayerMovement movement;
 
         private GameState gameState;
@@ -32,10 +32,10 @@ namespace Core.Manager
             switch (gameState)
             {
                 case GameState.Playing:
-                    QuestionCanvas = FindObjectOfType<QuestionManager>();
+                    QuestionCanvas = FindObjectOfType<DialogueManager>();
                     break;
                 case GameState.Question:
-                    QuestionCanvas = FindObjectOfType<QuestionManager>();
+                    QuestionCanvas = FindObjectOfType<DialogueManager>();
                     break;
                 default:
                     return;
@@ -59,7 +59,7 @@ namespace Core.Manager
             movement.enabled = shouldMove;
             QuestionCanvas.gameObject.SetActive(!shouldMove);
 
-            //Todo AssignQuestion
+            QuestionCanvas.StartDialogue();
         }
     }
 }

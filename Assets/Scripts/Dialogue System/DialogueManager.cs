@@ -1,64 +1,87 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour {
+public class DialogueManager : MonoBehaviour
+{
 
-	public Text nameText;
-	public Text dialogueText;
+    private GameManager gamemanager;
+    [SerializeField] public Text titleText;
+    public Image questionImage;
+    [SerializeField]
+    private Dialogue dialogue;
 
-	public Animator animator;
+    [SerializeField] private InputField inputFromUser;
 
-	private Queue<string> sentences;
+    private Queue<Dialogue.mission> sentences;
 
-	// Use this for initialization
-	void Start () {
-		sentences = new Queue<string>();
-	}
 
-	public void StartDialogue (Dialogue dialogue)
-	{
-		animator.SetBool("IsOpen", true);
 
-		nameText.text = dialogue.name;
+    private string questionAnswer = string.Empty;
 
-		sentences.Clear();
+    // Use this for initialization
+    void Start()
+    {
+        gamemanager = FindObjectOfType<GameManager>();
+        sentences = new Queue<Dialogue.mission>();
+        inputFromUser.onEndEdit.AddListener(OnFinishInput);
+    }
 
-		foreach (string sentence in dialogue.sentences)
-		{
-			sentences.Enqueue(sentence);
-		}
+    private void OnFinishInput(string answer)
+    {
+        answer = answer.ToLower();
 
-		DisplayNextSentence();
-	}
+        bool isCorrect = answer == questionAnswer;
+        if (isCorrect)
+            gamemanager.OnMissionEnd();
 
-	public void DisplayNextSentence ()
-	{
-		if (sentences.Count == 0)
-		{
-			EndDialogue();
-			return;
-		}
+    }
 
-		string sentence = sentences.Dequeue();
-		StopAllCoroutines();
-		StartCoroutine(TypeSentence(sentence));
-	}
+    public void StartDialogue()
+    {
 
-	IEnumerator TypeSentence (string sentence)
-	{
-		dialogueText.text = "";
-		foreach (char letter in sentence.ToCharArray())
-		{
-			dialogueText.text += letter;
-			yield return null;
-		}
-	}
+        foreach (Dialogue.mission sentence in dialogue.questions)
+        {
+            sentences.Enqueue(sentence);
+        }
 
-	void EndDialogue()
-	{
-		animator.SetBool("IsOpen", false);
-	}
+        Dialogue.mission firstMission = sentences.Dequeue();
+        titleText.text = firstMission.titleOfTheQuestion;
+        questionAnswer = firstMission.answer.ToLower();
+        DisplayNextSentence(firstMission);
+    }
+
+    private void DisplayNextSentence(Dialogue.mission firstMission)
+    {
+        questionImage.sprite = firstMission.theMissionImage;
+
+
+    }
+
+    // public void DisplayNextSentence()
+    // {
+    //     if (sentences.Count == 0)
+    //     {
+    //         EndDialogue();
+    //         return;
+    //     }
+
+    //     //string sentence = sentences.Dequeue();
+    //     StopAllCoroutines();
+    //     StartCoroutine(TypeSentence(sentence));
+    // }
+
+    // IEnumerator TypeSentence(string sentence)
+    // {
+    //     //dialogueText.text = "";
+    //     foreach (char letter in sentence.ToCharArray())
+    //     {
+    //         //  dialogueText.text += letter;
+    //         yield return null;
+    //     }
+    // }
 
 }
