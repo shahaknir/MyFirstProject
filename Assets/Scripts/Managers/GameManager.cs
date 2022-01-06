@@ -25,8 +25,6 @@ namespace Core.Manager
         }
 
 
-
-
         private void StartGame(Scene arg0, Scene arg1)
         {
             switch (gameState)

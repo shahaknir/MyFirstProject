@@ -10,14 +10,16 @@ public class DialogueManager : MonoBehaviour
 
     private GameManager gamemanager;
     [SerializeField] public Text titleText;
-    public Image questionImage;
+    public string questionTxt;
     [SerializeField]
     private Dialogue dialogue;
 
     [SerializeField] private InputField inputFromUser;
 
+    [SerializeField]
     private Queue<Dialogue.mission> sentences;
-
+    [SerializeField]
+    public GameObject button;
 
 
     private string questionAnswer = string.Empty;
@@ -27,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     {
         gamemanager = FindObjectOfType<GameManager>();
         sentences = new Queue<Dialogue.mission>();
+
         inputFromUser.onEndEdit.AddListener(OnFinishInput);
     }
 
@@ -37,7 +40,13 @@ public class DialogueManager : MonoBehaviour
         bool isCorrect = answer == questionAnswer;
         if (isCorrect)
             gamemanager.OnMissionEnd();
-
+        else
+        {
+            
+            inputFromUser.text = "Wrong Answer!!";
+            button.GetComponentInChildren<Text>().text = "If you wish to try again, Click Here";
+            //if(button)
+        }
     }
 
     public void StartDialogue()
@@ -56,7 +65,7 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayNextSentence(Dialogue.mission firstMission)
     {
-        questionImage.sprite = firstMission.theMissionImage;
+        questionTxt = firstMission.theMissionQ;
 
 
     }

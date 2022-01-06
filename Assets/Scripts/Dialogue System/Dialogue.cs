@@ -13,7 +13,7 @@ public class Dialogue : ScriptableObject
     public struct mission
     {
         public string titleOfTheQuestion;
-        public Sprite theMissionImage;
+        public string theMissionQ;
         public string answer;
 
     }
