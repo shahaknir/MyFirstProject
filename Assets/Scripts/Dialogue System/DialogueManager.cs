@@ -8,13 +8,13 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
 
-    private GameManager gamemanager;
-    [SerializeField] public Text titleText;
+    private GameManager game_manager;
+    [SerializeField] public Text title_text;
     public string questionTxt;
     [SerializeField]
     private Dialogue dialogue;
 
-    [SerializeField] private InputField inputFromUser;
+    [SerializeField] private InputField input_from_user;
 
     [SerializeField]
     private Queue<Dialogue.mission> sentences;
@@ -22,28 +22,28 @@ public class DialogueManager : MonoBehaviour
     public GameObject button;
 
 
-    private string questionAnswer = string.Empty;
+    private string question_answer = string.Empty;
 
     // Use this for initialization
     void Start()
     {
-        gamemanager = FindObjectOfType<GameManager>();
+        game_manager = FindObjectOfType<GameManager>();
         sentences = new Queue<Dialogue.mission>();
 
-        inputFromUser.onEndEdit.AddListener(OnFinishInput);
+        input_from_user.onEndEdit.AddListener(OnFinishInput);
     }
 
     private void OnFinishInput(string answer)
     {
         answer = answer.ToLower();
 
-        bool isCorrect = answer == questionAnswer;
+        bool isCorrect = answer == question_answer;
         if (isCorrect)
-            gamemanager.OnMissionEnd();
+            game_manager.OnMissionEnd();
         else
         {
             
-            inputFromUser.text = "Wrong Answer!!";
+            input_from_user.text = "Wrong Answer!!";
             button.GetComponentInChildren<Text>().text = "If you wish to try again, Click Here";
             //if(button)
         }
@@ -58,8 +58,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         Dialogue.mission firstMission = sentences.Dequeue();
-        titleText.text = firstMission.titleOfTheQuestion;
-        questionAnswer = firstMission.answer.ToLower();
+        title_text.text = firstMission.titleOfTheQuestion;
+        question_answer = firstMission.answer.ToLower();
         DisplayNextSentence(firstMission);
     }
 

@@ -14,6 +14,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questions:
   - titleOfTheQuestion: Hello World
+    theMissionQ: "using System;  namespace HelloWorld {   class Program   {     static
+      void Main(string[] args)     { \t\tstring answer2print = \"_____ !\" \t\tConsole.WriteLine(answer2print);        
+      }   } }"
+    answer: hello world
+  - titleOfTheQuestion: If Condition
+    theMissionQ: "using System;  namespace Conditions {   class Program   {     static
+      void Main(string[] args)     { \tint x = 50; \tint y = 10; \t \t__ ( x _ y
+      )  \t{ \t\tConsole.WriteLine(\"Print this if x is greater then y\"); \t} \t
+      \t}   } }"
+    answer: if >
+  - titleOfTheQuestion: If...Else
+    theMissionQ: "using System;  namespace Conditions {   class Program   {     static
+      void Main(string[] args)     { \tint x = 50; \tint y = 10; \t \t__ ( x > y
+      )  \t{ \t\tConsole.WriteLine(\"Print this if x is greater then y\"); \t} \t
+      \t}____ \t{ \t\tConsole.WriteLine(\"Print this if y is greater then x\"); \t}  
+      } }"
+    answer: if else
+  - titleOfTheQuestion: Reading Scripts - Conditions
+    theMissionQ: "//What will be printed to the screen?  using System;  namespace
+      Conditions {   class Program   {     static void Main(string[] args)     {
+      \tint time = 20; \tstring result = (time < 18) ? \"Good day.\" : \"Good evening.\";
+      \tConsole.WriteLine(result);   } }"
+    answer: Good evening.
+  - titleOfTheQuestion: Reading Scripts - Switch
+    theMissionQ: "//What will be printed to the screen?  using System;  namespace
+      Conditions {   class Program   {     static void Main(string[] args)     {
+      \tint day = 4; \tswitch (day)  \t{ \t\tcase 1: \t\t\tConsole.WriteLine(\"Monday\");
+      \t\tbreak; \t\tcase 2: \t\t\tConsole.WriteLine(\"Tuesday\"); \t\tbreak; \t\tcase
+      3: \t\t\tConsole.WriteLine(\"Wednesday\"); \t\t\tbreak; \t\tcase 4: \t\t\tConsole.WriteLine(\"Thursday\");
+      \t\tbreak; \t\tcase 5: \t\t\tConsole.WriteLine(\"Friday\"); \t\tbreak; \t\tcase
+      6: \t\t\tConsole.WriteLine(\"Saturday\"); \t\tbreak; \t\tcase 7: \t\t\tConsole.WriteLine(\"Sunday\");
+      \t\tbreak; \t}   } }"
+    answer: Thursday
+  - titleOfTheQuestion: While Loop
+    theMissionQ: "//what will be printed? using System;  namespace Loops { \tclass
+      Program \t{ \t\tstatic void Main(string[] args) \t\t{ \t\t\tint i = 0; \t\t\twhile
+      (i < 5)  \t\t\t{ \t\t\t  Console.WriteLine(i); \t\t\t  i++; \t\t\t} \t\t} \t}
+      }"
+    answer: 0 1 2 3 4
+  - titleOfTheQuestion: Do..While Loop
+    theMissionQ: "//This loop will execute the code block once, before checking if
+      the condition is true, then it will repeat the loop as long as the condition
+      is true. using System;  namespace Loops { \tclass Program \t{ \t\tstatic void
+      Main(string[] args) \t\t{  \t\t\tint i = 0; \t\t\tdo  \t\t\t{ \t\t\t  Console.WriteLine(i);
+      \t\t\t  i++; \t\t\t} \t\t\t______ (i < 5); \t\t} \t} }"
+    answer: while
+  - titleOfTheQuestion: Hello World
+    theMissionQ: 
+    answer: hello world
+  - titleOfTheQuestion: Hello World
+    theMissionQ: 
+    answer: hello world
+  - titleOfTheQuestion: Hello World
+    theMissionQ: 
+    answer: hello world
+  - titleOfTheQuestion: Hello World
     theMissionQ: 
     answer: hello world
   - titleOfTheQuestion: Hello World
